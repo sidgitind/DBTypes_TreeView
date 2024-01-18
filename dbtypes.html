@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	  <title>Database Types</title>
+	  
+	  <!-- Bootstrap -->
+	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+	  <meta name="description" content="">
+	
+  <script data-require="d3@4.0.0" data-semver="4.0.0" src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script> 
+  <style>
+    .node circle {
+      fill: #fff;
+      stroke: slateblue;
+      stroke-width: 3px;
+    }
+    
+    .node rect {
+      fill: #fff;
+      stroke: slateblue;
+      stroke-width: 3px;
+    }
+    
+	.node polygon {
+	fill: #fff;
+      stroke: slateblue;
+      stroke-width: 3px;
+	}
+
+	.node ellipse {
+		fill: #fff;
+      stroke: slateblue;
+      stroke-width: 3px;
+
+	}
+    .node text {
+      font: 12px sans-serif;
+	  
+    }
+    
+    .link path {
+      fill: none;
+      stroke: #ccc;
+      stroke-width: 2px;
+    }
+    
+    .link text {
+      font: 12px sans-serif;
+    }
+    
+    .arrow {
+      fill: none;
+      stroke: #ccc;
+      stroke-width: 1px;
+    }
+
+    .legend rect {
+      fill:white;
+      stroke:black;
+      opacity:0.8;
+    }
+
+   /*     h1 { 
+  display: block;
+  font-size: 1.75em;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+h2 {
+  display: block;
+  font-size: 1.5em;
+  margin-top: 0.83em;
+  margin-bottom: 0.83em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+.sansserif {
+  font-family: Arial, Helvetica, sans-serif;
+} */
+  </style>
+</head>
+
+<body>
+   
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+	<div class="container">
+
+		<div class="starter-template">
+			<h1>What are the various types of Databases - Interactive Infographic</h1>
+	<p class="lead">Use the Infographic to Learn or as a Quick reference guide</h2>
+	<h3>Early Beta version - Released for your feedback</h3>
+	<a href="www.thinkcerti.com">Go to ThinkCerti</a>
+	<br>
+	<br>
+	<a href="https://forms.gle/rh2qcxf9ry2VFFEv5">Give feedback - Your Opinion Matters to us</a>
+	    </div>
+  
+	  </div><!-- /.container -->
+	
+	<!-- Create a div where the chart will take place -->
+<div id="d3chart"></div>
+    
+  <script>
+  //var treeData = undefined;
+  //d3.json('C:/Users/sidj1_000/Documents/AWS_Services.json', function ( error, data ) {
+    //console.log(data)
+  //if(error == null || error == undefined) {
+  //treeData = data;
+  //console.log(data)
+  //}
+//});
+  //console.log(treeData)
+  var treeData=
+  {
+	"name": "Database types",
+	"children": [{
+			"name": "Based on Data storage in DB",
+			"type": "PCAT",
+			"children": [{
+					"name": "SQL",
+					"type": "CCAT",
+					"children": [{
+							"name": "Data is stored in the form of tables"
+						},
+						{
+							"name": "Most widely used type of Database"
+						},
+						{
+							"name": "Oracle SQL, MySQL, Microsoft SQL Server are examples "
+						}
+					]
+				},
+				{
+					"name": "NoSQL",
+					"type": "CCAT",
+					"children": [{
+							"name": "Key Features",
+							"children": [{
+									"name": "The Data is not stored in the form of Tables"
+								},
+								{
+									"name": "Overcomes the challenges of RDBMS"
+								},
+								{
+									"name": "Preferred in modern Digital Applications"
+								}
+							]
+						},
+						{
+							"name": "Types",
+							"children": [{
+									"name": "Document Oriented",
+									"children": [{
+											"name": "Data is stored in JSON or document format"
+										},
+										{
+											"name": "MongDB is an example"
+										}
+									]
+								},
+								{
+									"name": "Key Value pair",
+									"children": [{
+											"name": "Data is stored in the form of key-value pair"
+										},
+										{
+											"name": "RiakDB is an example"
+										}
+									]
+								},
+								{
+									"name": "Graph Oriented",
+									"children": [{
+											"name": "Data is stored in the form of a Graph"
+										},
+										{
+											"name": "Data is stored in the form of nodes and is connected via edges."
+										},
+										{
+											"name": "widely used in Social Media apps as it betters maps the real world in DBl"
+										},
+										{
+											"name": "Neo4j is an example"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "In-memory",
+					"type": "CCAT",
+					"children": [{
+							"name": "The Data is stored in memory"
+						},
+						{
+							"name": "Could use RDBMS or NoSQl approach to store data"
+						},
+						{
+							"name": "Widely used in Browser, Mobile apps, Embedded software"
+						},
+						{
+							"name": "Sqlite is a in-memory RDBMS DB"
+						},
+						{
+							"name": "RiakDB is an in-memory NoSQL Key-value pair DB"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Based on how Data is distributed",
+			"type": "PCAT",
+			"children": [{
+					"name": "Distributed",
+					"type": "CCAT",
+					"children": [{
+							"name": "The Database is spread across multiple servers(clusters) horizontally"
+						},
+						{
+							"name": "Widley used type in Big Data processing, Microservices"
+						}
+					]
+				},
+				{
+					"name": "Centralized",
+					"type": "CCAT",
+					"children": [{
+							"name": "The complete DB is on a server"
+						},
+						{
+							"name": "This is the traditional DB compute design and is widely used"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Based on Usage",
+			"type": "PCAT",
+			"children": [{
+					"name": "Transactional Data",
+					"type": "CCAT",
+					"children": [{
+							"name": "Also known as OLTP - Online Transaction processing"
+						},
+						{
+							"name": "Used to store application data and transactions data"
+						},
+						{
+							"name": "MySQL, MongoDB, Oracle SQL are examples"
+						}
+					]
+				},
+				{
+					"name": "Aggregated Data",
+					"type": "CCAT",
+					"children": [{
+							"name": "Part of OLAP - Online Analytical processing"
+						},
+						{
+							"name": "Used in Datawarehouse"
+						},
+						{
+							"name": "The OLTP data is aggregated form and is used by OLAP applications"
+						},
+						{
+							"name": "TeraData, Informatica, SAS are examples"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Commonly used Databases ",
+			"type": "PCAT",
+			"children": [{
+					"name": "Oracle SQL",
+					"type": "CCAT",
+					"children": [{
+						"name": "Details",
+						"children": [{
+								"name": "One of the most widely used RDBMS"
+							},
+							{
+								"name": "Key Aspects",
+								"type": "data",
+								"children": [{
+										"name": "DB Query methods",
+										"children": [{
+												"name": "Using SQL query"
+											},
+											{
+												"name": "Programatically - Using DB drivers"
+											},
+											{
+												"name": "PL SQL is a programming language and is used for queries that are procedural in nature"
+											}
+										]
+									},
+									{
+										"name": "DB Type",
+										"children": [{
+											"name": "SQL or RDBMS type DB"
+										}]
+									}
+								]
+							}
+						]
+					}]
+				},
+				{
+					"name": "MS SQL Server",
+					"type": "CCAT",
+					"children": [{
+						"name": "Details",
+						"children": [{
+								"name": "Microsoft Product and is widely used DB technology"
+							},
+							{
+								"name": "Key Aspects",
+								"type": "data",
+								"children": [{
+										"name": "DB Query methods",
+										"children": [{
+												"name": "Using SQL query"
+											},
+											{
+												"name": "Programatically - Using DB drivers"
+											},
+											{
+												"  name": "T-SQL is a programming language and is used for queries that are procedural in nature"
+											}
+										]
+									},
+									{
+										"name": "DB Type",
+										"children": [{
+											"name": "SQL or RDBMS type DB"
+										}]
+									}
+								]
+							}
+						]
+					}]
+				},
+				{
+					"name": "MySQL",
+					"type": "CCAT",
+					"children": [{
+						"name": "Details",
+						"children": [{
+								"name": "OpenSource DB, widely used. Part of LAMP web technologies stack"
+							},
+							{
+								"name": "Key Aspects",
+								"type": "data",
+								"children": [{
+										"name": "DB Query methods",
+										"children": [{
+												"name": "Using SQL query"
+											},
+											{
+												"name": "Programatically - Using DB drivers"
+											},
+											{
+												"name": "PL SQL is a programming language and is used for queries that are procedural in nature"
+											}
+										]
+									},
+									{
+										"name": "DB Type",
+										"children": [{
+											"name": "SQL or RDBMS type DB"
+										}]
+									}
+								]
+							}
+						]
+					}]
+				},
+				{
+					"name": "MongoDB",
+					"type": "CCAT",
+					"children": [{
+						"name": "Details",
+						"children": [{
+								"name": "Opensource DB"
+							},
+							{
+								"name": "Key Aspects",
+								"type": "data",
+								"children": [{
+										"name": "DB Query methods",
+										"children": [{
+												"name": "Using MongoDB Query language"
+											},
+											{
+												"name": "Programatically - Using DB drivers"
+											}
+										]
+									},
+									{
+										"name": "DB Type",
+										"children": [{
+												"name": "Distributed, NoSQL, Document based"
+											},
+											{
+												"name": "Data is stored in JSON like documents "
+											}
+										]
+									}
+								]
+							}
+						]
+					}]
+				},
+				{
+					"name": "PostpreSQL",
+					"type": "CCAT",
+					"children": [{
+						"name": "Details",
+						"children": [{
+								"name": "Opensource DB, widely used in modern applications"
+							},
+							{
+								"name": "Key Aspects",
+								"type": "data",
+								"children": [{
+										"name": "DB Query methods",
+										"children": [{
+											"name": "Programatically - Using DB drivers"
+										}]
+									},
+									{
+										"name": "DB Type",
+										"children": [{
+											"name": "SQL or RDBMS type"
+										}]
+									}
+								]
+							}
+						]
+					}]
+				},
+				{
+					"name": "Riak KV DB",
+					"type": "CCAT",
+					"children": [{
+						"name": "Details",
+						"children": [{
+								"name": "Distributed, NoSQL DB"
+							},
+							{
+								"name": "Key Aspects",
+								"type": "data",
+								"children": [{
+										"name": "DB Query methods",
+										"children": [{
+											"name": "Programatically - Using DB drivers/connectors"
+										}]
+									},
+									{
+										"name": "DB Type",
+										"children": [{
+											"name": "NoSQL, Data is stored in Key-Value pair"
+										}]
+									}
+								]
+							}
+						]
+					}]
+				},
+				{
+					"name": "Hbase",
+					"type": "CCAT",
+					"children": [{
+						"name": "Details",
+						"children": [{
+								"name": "Opensource, Distributed DB, specifically used in Big Data use cases"
+							},
+							{
+								"name": "Key Aspects",
+								"type": "data",
+								"children": [{
+										"name": "DB Query methods",
+										"children": [{
+												"name": "Programatically - Using Java API"
+											},
+											{
+												"name": "Using jruby-based (JIRB) shell"
+											}
+										]
+									},
+									{
+										"name": "DB Type",
+										"children": [{
+												"name": "NoSQL DB, Uses HDFS and Hadoop"
+											},
+											{
+												"name": "Used to execute random,realtime read/write access on Big Data"
+											}
+										]
+									}
+								]
+							}
+						]
+					}]
+				},
+				{
+					"name": "Sqlite",
+					"type": "CCAT",
+					"children": [{
+						"name": "Details",
+						"children": [{
+								"name": "Opensource DB, Widely used in Browser, mobile apps, Embedded software"
+							},
+							{
+								"name": "Key Aspects",
+								"type": "data",
+								"children": [{
+										"name": "DB Query methods",
+										"children": [{
+												"name": "Programatically - Using  API"
+											},
+											{
+												"name": "Using SQL"
+											}
+										]
+									},
+									{
+										"name": "DB Type",
+										"children": [{
+												"name": "RDBMS, In-memory DB"
+											},
+											{
+												"name": "contained in a C library. And is embedded into the end program"
+											}
+										]
+									}
+								]
+							}
+						]
+					}]
+				},
+				{
+					"name": " Neo4j",
+					"type": "CCAT",
+					"children": [{
+						"name": "Details",
+						"children": [{
+								"name": "Opensource DB, Gaining Traction in modern applications"
+							},
+							{
+								"name": "Key Aspects",
+								"type": "data",
+								"children": [{
+										"name": "DB Query methods",
+										"children": [{
+												"name": "Programatically - Using  API"
+											},
+											{
+												"name": "Using Cypher"
+											}
+										]
+									},
+									{
+										"name": "DB Type",
+										"children": [{
+											"name": "NoSQL, Graph oriented"
+										}]
+									}
+								]
+							}
+						]
+					}]
+				}
+			]
+		}
+	]
+}
+
+
+;
+
+    // Set the dimensions and margins of the diagram
+    var margin = {
+        top: 20,
+        right: 90,
+        bottom: 30,
+        left: 90
+      },
+      width = 5000 - margin.left - margin.right,
+      height = 800 - margin.top - margin.bottom;
+
+	//var myColor = d3.scaleSequential().domain([5,20])
+  	//			.interpolator(d3.interpolateViridis);
+	  var myColor = d3.scaleOrdinal().domain([1,20])
+  					.range(d3.schemeSet3);
+  	//var colors = d3.scale.linear()
+    //					.domain([5, 20])
+    //			.range(['#000000','#ffffff'])
+
+    // append the svg object to the body of the page
+    // appends a 'group' element to 'svg'
+    // moves the 'group' element to the top left margin
+    var svg = d3.select("#d3chart").append("svg")
+      .attr("width", width + margin.right + margin.left)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    var i = 0,
+      duration = 750,
+      root;
+
+    // declares a tree layout and assigns the size
+    var treemap = d3.tree().size([height, width]);
+
+    // Assigns parent, children, height, depth
+    root = d3.hierarchy(treeData, function(d) {
+      return d.children;
+    });
+    root.x0 = height / 2;
+    root.y0 = 0;
+
+    // Collapse after the second level
+    root.children.forEach(collapse);
+
+    update(root);
+
+    // Collapse the node and all it's children
+    function collapse(d) {
+      if (d.children) {
+        d._children = d.children
+        d._children.forEach(collapse)
+        d.children = null
+      }
+    }
+
+    function update(source) {
+
+      // Assigns the x and y position for the nodes
+      var treeData = treemap(root);
+
+      // Compute the new tree layout.
+      var nodes = treeData.descendants(),
+        links = treeData.descendants().slice(1);
+
+      // Normalize for fixed-depth.
+      nodes.forEach(function(d) {
+        d.y = d.depth * 180
+      });
+
+      // ****************** Nodes section ***************************
+
+      // Update the nodes...
+      var node = svg.selectAll('g.node')
+        .data(nodes, function(d) {
+          return d.id || (d.id = ++i);
+        });
+
+      // Enter any new modes at the parent's previous position.
+      var nodeEnter = node.enter().append('g')
+        .attr('class', 'node')
+		//.style('fill', function(d,i) {
+        //  return d._children ?myColor(d.data[2]):"#fff";})
+        .attr("transform", function(d) {
+          return "translate(" + source.y0 + "," + source.x0 + ")";
+        })
+        .on('click', click);
+
+      // Add Circle for the nodes
+      nodeEnter.filter(function(d) {
+          return (!d.data.type || d.data.type !== 'service' || d.data.type !== 'usp');
+        }).append('circle')
+        .attr('class', 'node')
+        .attr('r', 1e-6)
+		//.style("fill",getColorForNode(d))
+        //.style("fill", function(d) {
+          //return d._children ? "lightsteelblue" : "#fff";
+		  //return d._children ? getColorForNode(d):"#fff";
+		
+		.style('fill', function(d,i) {
+		//	console.log(i+1)
+		//	console.log(myColor(i+1))
+          return  d._children ? myColor(i) : "#fff";
+        });
+      //show services in box
+      nodeEnter.filter(function(d) {
+          return (d.data.type && d.data.type === 'service' ||d.data.type==='CCAT');
+        }).append('rect')
+        .attr('class', 'node')
+        .attr('width', 20)
+        .attr('height', 20)
+        .attr('y', -10)
+        .attr('x', -10)
+        .style("fill", function(d,i) {
+          return d._children ? myColor(i) : "#fff";
+        });
+
+        // show USP as star
+		//nodeEnter.filter(function(d) {
+          //return (d.data.type && d.data.type === 'usp');
+        //}).append('polygon')
+        //.attr('class', 'node')
+		//.attr('points', "05,20,15,10,20,30")
+        //.attr('width', 20)
+        //.attr('height', 20)
+        //.attr('y', -10)
+        //.attr('x', -10)
+        //.style("fill", function(d,i) {
+        //  return d._children ? myColor(i) : "#fff";
+        //});
+
+      // Add labels for the nodes
+      nodeEnter.append('text')
+        //.attr("dy", "0.55em") for the first node, move text upwards, handle it using index
+		.attr("dy",function(d,i){
+			return i==0 ? "-1.35em" :"0.55em";
+		})
+        .attr("data-legend",function(d) { return d.data.type})
+        .attr("data-legend-icon", function(d) { return d.data.type < "N" ? "line" : "circle"})
+        .attr("x", function(d) {
+          return d.children || d._children ? 13 : 13;
+        })
+        //.attr("text-anchor", function(d) {
+        //  return d.children || d._children ? "start" : "start";
+		//})
+		.attr("text-anchor", function(d,i){
+			return i==0 ? "end" :"start";
+		})
+        .text(function(d) {
+          return d.data.name;
+        });
+
+      // UPDATE
+      var nodeUpdate = nodeEnter.merge(node);
+
+      // Transition to the proper position for the node
+      nodeUpdate.transition()
+        .duration(duration)
+        .attr("transform", function(d) {
+          return "translate(" + d.y + "," + d.x + ")";
+        });
+
+      // Update the node attributes and style
+      nodeUpdate.select('circle.node')
+        .attr('r', 10)
+        //.style("fill", function(d) {
+          //return d._children ? "lightsteelblue" : "#fff";
+		.style('fill', function(d,i) {
+          return d._children ?myColor(i):"#fff";
+        })
+        .attr('cursor', 'pointer');
+
+		// Update the node attributes and style for the rectange i.e type=data in json
+		nodeUpdate.select('rect.node')
+        .attr('r', 10)
+        //.style("fill", function(d) {
+          //return d._children ? "lightsteelblue" : "#fff";
+		.style('fill', function(d,i) {
+          return d._children ?myColor(i):"#fff";
+        })
+        .attr('cursor', 'pointer');
+
+        // Update the node attributes and style for the rectange i.e type=data in json
+		nodeUpdate.select('polygon.node')
+        .attr('r', 10)
+        //.style("fill", function(d) {
+          //return d._children ? "lightsteelblue" : "#fff";
+		.style('fill', function(d,i) {
+          return d._children ?myColor(i):"#fff";
+        })
+        .attr('cursor', 'pointer');
+
+      // Remove any exiting nodes
+      var nodeExit = node.exit().transition()
+        .duration(duration)
+        .attr("transform", function(d) {
+          return "translate(" + source.y + "," + source.x + ")";
+        })
+        .remove();
+
+      // On exit reduce the node circles size to 0
+      nodeExit.select('circle')
+        .attr('r', 1e-6);
+
+      // On exit reduce the opacity of text labels
+      nodeExit.select('text')
+        .style('fill-opacity', 1e-6);
+
+      // ****************** links section ***************************
+
+      // Update the links...
+      var link = svg.selectAll('g.link')
+        .data(links, function(d) {
+          return d.id;
+        });
+
+      // Enter any new links at the parent's previous position.
+      var linkEnter = link.enter().insert('g', 'g')
+        .attr("class", "link")
+		;
+        
+      linkEnter.append('path')
+	    //to change the color of the links
+		//.style("stroke",'#FF7F00')
+		.style("stroke",function(d,i){ 
+      	return myColor(i)})
+        .attr('d', function(d) {
+          var o = {
+            x: source.x0,
+            y: source.y0
+          }
+          return diagonal(o, o)
+        });
+		
+      //this is code to add text on the connecting lines
+      //linkEnter.append('text')
+        //.text(function(d) {
+          //if (d.parent && d.parent.children.length > 1){
+           // if (!d.parent.index) d.parent.index = 0;
+            //return ++d.parent.index;
+          //  return d.data.desc;
+          //}
+        //})
+        //.attr('dy', "-1em");
+
+      // UPDATE
+      var linkUpdate = linkEnter.merge(link);
+
+      // Transition back to the parent element position
+      linkUpdate.select('path').transition()
+        .duration(duration)
+        .attr('d', function(d) {
+          return diagonal(d, d.parent)
+        });
+        
+      linkUpdate.select('text').transition()
+        .duration(duration)
+        .attr('transform', function(d){
+          if (d.parent) {
+            return 'translate(' + ((d.parent.y + d.y) / 2) + ',' + ((d.parent.x + d.x) / 2) + ')'
+          }
+        })
+        
+      // Remove any exiting links
+      link.exit().each(function(d){
+        d.parent.index = 0;
+      })
+      
+      var linkExit = link.exit()
+        .transition()
+        .duration(duration);
+      
+      linkExit.select('path')
+        .attr('d', function(d) {
+          var o = {
+            x: source.x,
+            y: source.y
+          }
+          return diagonal(o, o)
+        })
+        
+      linkExit.select('text')
+        .style('opacity', 0);
+      
+      linkExit.remove();
+
+      // Store the old positions for transition.
+      nodes.forEach(function(d) {
+        d.x0 = d.x;
+        d.y0 = d.y;
+      });
+
+      // Creates a curved (diagonal) path from parent to the child nodes
+      function diagonal(s, d) {
+
+        path = `M ${s.y} ${s.x}
+            C ${(s.y + d.y) / 2} ${s.x},
+              ${(s.y + d.y) / 2} ${d.x},
+              ${d.y} ${d.x}`
+
+        return path
+      }
+
+      // Toggle children on click.
+      function click(d) {
+        if (d.children) {
+          d._children = d.children;
+          d.children = null;
+        } else {
+          d.children = d._children;
+          d._children = null;
+        }
+        update(d);
+      }
+    }
+
+    legend = svg.append("g")
+    .attr("class","legend")
+    .attr("transform","translate(50,30)")
+    .style("font-size","12px")
+    .call(d3.legend)
+
+  setTimeout(function() { 
+    legend
+      .style("font-size","20px")
+      .attr("data-style-padding",10)
+      .call(d3.legend)
+  },1000)
+
+
+  
+  
+//}) //added to support loading from JSON
+</script>
+</body>
